@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+client/node_modules/
+server/backend/node_modules/
+
+# Environment variables
+.env
+server/backend/.env
+
+# Build output
+client/dist/
+client/.dist/
+
+# Git nested repos (remove nested .git to avoid submodule conflicts)
+client/.git/
+server/.git/
+server/backend/.git/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
