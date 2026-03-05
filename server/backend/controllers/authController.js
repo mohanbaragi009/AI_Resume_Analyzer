@@ -1,6 +1,6 @@
-import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import { findUserByEmail, createUser, getUserById } from "../utils/userStore.js";
 
 export const register = async (req, res) => {
   try {
@@ -11,7 +11,7 @@ export const register = async (req, res) => {
     }
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = findUserByEmail(email);
     if (existingUser) {
       return res.status(400).json({ message: "Email already registered. Please login." });
     }
@@ -19,7 +19,7 @@ export const register = async (req, res) => {
     // Hash password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = await User.create({ name, email, password: hashedPassword });
+    const user = createUser(name, email, hashedPassword);
 
     res.status(201).json({ message: "Registration successful!", userId: user._id });
   } catch (err) {
@@ -35,7 +35,7 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
-    const user = await User.findOne({ email });
+    const user = findUserByEmail(email);
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
