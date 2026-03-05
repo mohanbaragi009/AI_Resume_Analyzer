@@ -1,0 +1,15 @@
+{
+  "buildCommand": "npm run build:all",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "http://localhost:5000/:path*"
+    }
+  ],
+  "env": {
+    "GEMINI_API_KEY": "@gemini_api_key",
+    "JWT_SECRET": "@jwt_secret"
+  }
+}
