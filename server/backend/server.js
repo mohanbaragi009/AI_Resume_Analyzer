@@ -13,9 +13,13 @@ app.use(express.json());
 app.use(cors());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.error("MongoDB error:", err.message));
+if (process.env.MONGO_URI) {
+  mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("MongoDB connected"))
+    .catch(err => console.error("MongoDB error:", err.message));
+} else {
+  console.warn("MONGO_URI not configured. Database features will not work.");
+}
 
 // Routes
 app.use("/auth", authRoutes);
