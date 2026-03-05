@@ -14,9 +14,15 @@ app.use(cors());
 
 // MongoDB Connection
 if (process.env.MONGO_URI) {
-  mongoose.connect(process.env.MONGO_URI)
+  mongoose.connect(process.env.MONGO_URI, {
+    connectTimeoutMS: 5000,
+    serverSelectionTimeoutMS: 5000,
+  })
     .then(() => console.log("MongoDB connected"))
-    .catch(err => console.error("MongoDB error:", err.message));
+    .catch(err => {
+      console.warn("MongoDB connection failed:", err.message);
+      console.warn("Running in offline mode - database features will not work.");
+    });
 } else {
   console.warn("MONGO_URI not configured. Database features will not work.");
 }
