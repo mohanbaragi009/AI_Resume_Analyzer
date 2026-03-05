@@ -47,13 +47,21 @@ vercel --prod
 
 ## Step 3: Configure Environment Variables in Vercel
 
-In Vercel Dashboard → Project Settings → Environment Variables:
+⚠️ **IMPORTANT SECURITY NOTICE**: Never commit your API keys to GitHub!
+
+In Vercel Dashboard → Project Settings → Environment Variables, add:
 
 ```
-GEMINI_API_KEY=AIzaSyCKwOy2iz3_l__jDjFrqDD1tUVof6PGDvE
-JWT_SECRET=your_secure_random_string_here
-MONGO_URI=optional_mongodb_atlas_uri
+GEMINI_API_KEY=your_actual_gemini_api_key_here
+JWT_SECRET=a_strong_random_string_with_32_characters_minimum
+MONGO_URI=optional_mongodb_atlas_uri (if using database)
 ```
+
+**Security Best Practices:**
+- Do NOT expose your GEMINI_API_KEY in code or Git
+- Store sensitive keys only in Vercel Environment Variables
+- The .env file is in .gitignore and will NOT be committed
+- Rotate your API key if accidentally exposed
 
 ## Step 4: Verify Deployment
 
