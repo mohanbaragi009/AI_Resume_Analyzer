@@ -4,9 +4,8 @@ An intelligent full-stack web application that analyzes resumes against job desc
 
 ---
 
-## 🚀 Live Demo
-
-> Run locally using the steps below.
+## 🚀 Live Demo :
+ https://v0-mohan-ai-resume-analyzer.vercel.app/
 
 ---
 
